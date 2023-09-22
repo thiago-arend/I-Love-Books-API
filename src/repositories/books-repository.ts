@@ -10,7 +10,7 @@ export async function getBooks() {
 }
 
 export async function getBook(id: number) {
-  const result = await prisma.book.findMany({
+  const result = await prisma.book.findUnique({
     where: { id }
   });
 
