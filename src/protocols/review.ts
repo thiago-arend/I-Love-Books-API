@@ -1,8 +1,3 @@
-export type Review = {
-  id: number;
-  bookId: number;
-  review: string;
-  grade: number;
-};
+import { books } from "@prisma/client";
 
-export type CreateReview = Omit<Review, "id">;
+export type CreateReview = Omit<books, "id" | "title" | "author" | "publisher" | "purchaseDate" | "read" | "cover"> & { bookId: number };
