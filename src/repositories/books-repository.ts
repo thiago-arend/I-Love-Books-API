@@ -16,9 +16,9 @@ export async function getBook(id: number) {
 }
 
 export async function createBook(book: CreateBook) {
-  book.purchaseDate = new Date(book.purchaseDate); // prisma espera uma data em formato ISO 8601
+  const date = new Date(book.purchaseDate); // prisma espera uma data em formato ISO 8601
 
-  const result = await prisma.book.create({ data: book });
+  const result = await prisma.book.create({ data: { ...book, purchaseDate: date } });
 
   return result;
 }
