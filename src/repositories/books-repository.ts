@@ -4,13 +4,13 @@ import { CreateReview } from "../protocols/review";
 import prisma from "../database/index";
 
 export async function getBooks() {
-  const result = await prisma.books.findMany();
+  const result = await prisma.book.findMany();
 
   return result;
 }
 
 export async function getBook(id: number) {
-  const result = await prisma.books.findMany({
+  const result = await prisma.book.findMany({
     where: { id }
   });
 
@@ -20,7 +20,7 @@ export async function getBook(id: number) {
 export async function createBook(book: CreateBook) {
   book.purchaseDate = new Date(book.purchaseDate); // prisma espera uma data em formato ISO 8601
 
-  const result = await prisma.books.create({
+  const result = await prisma.book.create({
     data: book
   });
 
@@ -30,7 +30,7 @@ export async function createBook(book: CreateBook) {
 export async function reviewBook(bookReview: CreateReview) {
   const { bookId, grade, review } = bookReview;
 
-  const result = await prisma.books.update({
+  const result = await prisma.book.update({
     data: {
       grade,
       review,
